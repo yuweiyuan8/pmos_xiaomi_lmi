@@ -1,0 +1,30 @@
+# Reference: <https://postmarketos.org/devicepkg>
+pkgname=device-xiaomi-lmi
+pkgdesc="Xiaomi Redmi K30 Pro"
+pkgver=1
+pkgrel=0
+url="https://postmarketos.org"
+license="MIT"
+arch="aarch64"
+options="!check !archcheck"
+depends="
+	linux-xiaomi-lmi
+	mkbootimg
+	postmarketos-base
+"
+makedepends="devicepkg-dev"
+source="
+	deviceinfo
+"
+
+build() {
+	devicepkg_build $startdir $pkgname
+}
+
+package() {
+	devicepkg_package $startdir $pkgname
+}
+
+sha512sums="
+d2e69d83b10252d465b912257709e35d3db4848d8df24958380b638c5da27fd1b1c45f001e6699c7ab43bc4a580978a4e849bbcb23186bf327064eabdb0e8246  deviceinfo
+"

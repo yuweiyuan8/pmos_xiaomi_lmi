@@ -1,0 +1,68 @@
+# Reference: <https://postmarketos.org/vendorkernel>
+# Kernel config based on: arch/arm64/configs/(CHANGEME!)
+
+pkgname=linux-xiaomi-lmi
+pkgver=4.14.269
+pkgrel=0
+pkgdesc="Xiaomi Redmi K30 Pro kernel fork"
+arch="aarch64"
+_carch="arm64"
+_flavor="xiaomi-lmi"
+url="https://kernel.org"
+license="GPL-2.0-only"
+options="!strip !check !tracedeps pmb:cross-native"
+makedepends="
+	bash
+	bc
+	bison
+	devicepkg-dev
+	findutils
+	flex
+	openssl-dev
+	perl
+	python3
+	clang
+	xz
+	linux-headers
+"
+
+# Source
+_repository="android_kernel_xiaomi_sm8250"
+_commit="ac082818bbe24eebb69f64f0a61be28faaa5674f"
+_config="config-$_flavor.$arch"
+source="
+	$pkgname-$_commit.tar.gz::https://github.com/crdroidandroid/$_repository/archive/$_commit.tar.gz
+	$_config
+	fix-py3.patch
+"
+builddir="$srcdir/$_repository-$_commit"
+_outdir="out"
+
+prepare() {
+	default_prepare
+	REPLACE_GCCH=0
+	. downstreamkernel_prepare
+}
+
+build() {
+	unset LDFLAGS
+	make O="$_outdir" ARCH="$_carch" CC="clang" \
+		KBUILD_BUILD_VERSION="$((pkgrel + 1 ))-postmarketOS"
+}
+
+package() {
+	downstreamkernel_package "$builddir" "$pkgdir" "$_carch" \
+		"$_flavor" "$_outdir"
+	cp -v $_outdir/arch/arm64/boot/dtbo.img "$pkgdir"/boot
+	mkdir -pv "$pkgdir"/boot/dtbs
+	mkdir -pv "$pkgdir"/boot/dtbs/qcom
+	cp -rv $_outdir/arch/arm64/boot/dts/vendor/qcom/*.dtb "$pkgdir"/boot/dtbs/qcom/
+	make dtbs_install modules_install CC=clang O="$_outdir" ARCH="$_carch" \
+		INSTALL_DTBS_PATH="$pkgdir"/boot/dtbs INSTALL_MOD_PATH="$pkgdir"
+}
+
+sha512sums="
+b6458ba6a48a346e35663e9e82bdb1b742f3f267eb372e22f3e21117ae0fd096567354b05408ed134db119565e4672c834a05763ea74f0e39d6049a1c7ba6b21  linux-xiaomi-lmi-ac082818bbe24eebb69f64f0a61be28faaa5674f.tar.gz
+828d5cf1c0971322265477ebfb4e75c4eb36ec9ff674761fb8697c04f255d908ba305170aa1e3ba6d44b4c053bd9c02349f1bb07fa64db1f4e077b6cdfc627af  config-xiaomi-lmi.aarch64
+7c5a5e574330e687d78e5d12072a2de939282f389a7575facb11c30a2c4146c3e7a7d8a8f63cca15d5ab72bcc539c8184ea5e3a98950da6a910c99b9847ee2dc  fix-py3.patch
+"
