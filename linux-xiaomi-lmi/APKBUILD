@@ -26,7 +26,7 @@ makedepends="
 
 # Source
 _repository="linux"
-_commit="00980cd258f46cef91361b64e08637b74f481b9f"
+_commit="a6e3f8cdd73008c3eb22a451b0b94c2565f0d2e3"
 _config="config-$_flavor.$arch"
 source="
 	$pkgname-$_commit.tar.gz::https://github.com/NekoSekaiMoe/$_repository/archive/$_commit.tar.gz
