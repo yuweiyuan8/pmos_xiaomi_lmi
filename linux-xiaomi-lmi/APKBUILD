@@ -2,7 +2,7 @@
 # Kernel config based on: arch/arm64/configs/(CHANGEME!)
 
 pkgname=linux-xiaomi-lmi
-pkgver=6.11.0rc4
+pkgver=6.11.0
 pkgrel=0
 pkgdesc="Xiaomi Redmi K30 Pro kernel fork"
 arch="aarch64"
