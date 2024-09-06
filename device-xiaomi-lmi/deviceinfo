@@ -7,7 +7,7 @@ deviceinfo_name="Xiaomi Redmi K30 Pro"
 deviceinfo_manufacturer="Xiaomi"
 deviceinfo_codename="xiaomi-lmi"
 deviceinfo_year="2020"
-deviceinfo_dtb="qcom/sm8150-xiaomi-lmi-v2"
+deviceinfo_dtb="qcom/sm8250-xiaomi-lmi-v2"
 deviceinfo_arch="aarch64"
 
 # Device related
