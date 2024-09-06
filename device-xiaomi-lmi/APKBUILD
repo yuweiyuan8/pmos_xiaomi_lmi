@@ -13,6 +13,9 @@ depends="
 	postmarketos-base
 	mesa-vulkan-freedreno
 	linux-firmware-qcom
+	msm-modem
+	pd-mapper
+	tqftpserv
 "
 makedepends="devicepkg-dev"
 source="
