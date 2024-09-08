@@ -27,7 +27,7 @@ makedepends="
 
 # Source
 _repository="linux"
-_commit="ab22870271140ee767b811d0221f39c4f7cc8b7d"
+_commit="b3a5dd9136b82ade7a951929ad7d0b42ccf49cc6"
 _config="config-$_flavor.$arch"
 source="
 	$pkgname-$_commit.tar.gz::https://github.com/NekoSekaiMoe/$_repository/archive/$_commit.tar.gz
@@ -44,7 +44,7 @@ prepare() {
 
 build() {
 	unset LDFLAGS
-	make -j8 O="$_outdir" ARCH="$_carch" CC="${CC:-gcc}" \
+	make -j$(nproc) O="$_outdir" ARCH="$_carch" CC="${CC:-gcc}" \
 		KBUILD_BUILD_VERSION="$((pkgrel + 1 ))-postmarketOS"
 }
 
