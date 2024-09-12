@@ -1,5 +1,5 @@
 # Reference: <https://postmarketos.org/vendorkernel>
-# Kernel config based on: arch/arm64/configs/(CHANGEME!)
+# Kernel config based on: arch/arm64/configs/lmi_defconfig
 
 pkgname=linux-xiaomi-lmi
 pkgver=6.11.0
@@ -27,7 +27,7 @@ makedepends="
 
 # Source
 _repository="linux"
-_commit="5d166b50f7f1c64f557d44c17df463863ae1f82e"
+_commit="023e3a21f1f745d5ecf2f619431246b608b0049f"
 _config="config-$_flavor.$arch"
 source="
 	$pkgname-$_commit.tar.gz::https://github.com/NekoSekaiMoe/$_repository/archive/$_commit.tar.gz
