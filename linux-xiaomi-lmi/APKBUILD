@@ -26,11 +26,11 @@ makedepends="
 "
 
 # Source
-_repository="linux"
+_repository="sm8250-mainline"
 _commit="0d745847e67ced310114971a0e6ddc63a0ca4d19"
 _config="config-$_flavor.$arch"
 source="
-	$pkgname-$_commit.tar.gz::https://github.com/yuweiyuan8/sm8250-mainline/$_repository/archive/$_commit.tar.gz
+	$pkgname-$_commit.tar.gz::https://github.com/yuweiyuan8/$_repository/archive/$_commit.tar.gz
 	$_config
 "
 builddir="$srcdir/$_repository-$_commit"
