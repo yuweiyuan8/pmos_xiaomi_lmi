@@ -27,10 +27,10 @@ makedepends="
 
 # Source
 _repository="linux"
-_commit="023e3a21f1f745d5ecf2f619431246b608b0049f"
+_commit="0d745847e67ced310114971a0e6ddc63a0ca4d19"
 _config="config-$_flavor.$arch"
 source="
-	$pkgname-$_commit.tar.gz::https://github.com/NekoSekaiMoe/$_repository/archive/$_commit.tar.gz
+	$pkgname-$_commit.tar.gz::https://github.com/yuweiyuan8/sm8250-mainline/$_repository/archive/$_commit.tar.gz
 	$_config
 "
 builddir="$srcdir/$_repository-$_commit"
